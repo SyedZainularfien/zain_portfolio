@@ -30,7 +30,7 @@ const INITIAL_ENTRIES: TerminalEntry[] = [
   {
     id: 0,
     output:
-      'Zain CLI v2.0.0\nAsk me about my work, skills, experience—or anything else.\nType "help" if you need ideas.',
+      'Zain CLI v2.0.0\nAsk me anything—not just about me.\nI can explain tech, brainstorm ideas, solve simple problems, or show you around my work.\nType "help" if you need ideas.',
     kind: "info",
   },
 ];
@@ -45,7 +45,7 @@ const HELP_TEXT = [
   "contact     Start a conversation with me",
   "clear       Clear this terminal",
   "",
-  "Natural questions work too—try asking why you should hire me.",
+  "Or ask anything else—get tech help, brainstorm an idea, or solve a problem.",
 ].join("\n");
 
 const KEYBOARD_MASHES = [

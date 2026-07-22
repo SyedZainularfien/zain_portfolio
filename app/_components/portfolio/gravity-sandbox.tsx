@@ -26,7 +26,12 @@ const GRAVITY = 760_000;
 const BODIES_PER_BURST = 8;
 const CORE_RADIUS = 17;
 
-function createOrbiter(well: Point, width: number, height: number, offset = 0): Particle {
+function createOrbiter(
+  well: Point,
+  width: number,
+  height: number,
+  offset = 0,
+): Particle {
   const maxOrbit = Math.max(54, Math.min(width, height) * 0.4);
   const distance = 48 + Math.random() * Math.max(18, maxOrbit - 48);
   const angle = Math.random() * Math.PI * 2;
@@ -39,7 +44,11 @@ function createOrbiter(well: Point, width: number, height: number, offset = 0): 
     vx: -Math.sin(angle) * speed * direction,
     vy: Math.cos(angle) * speed * direction,
     radius: 1.4 + Math.random() * 1.8,
-    color: COLORS_POOL[(offset + Math.floor(Math.random() * COLORS_POOL.length)) % COLORS_POOL.length],
+    color:
+      COLORS_POOL[
+        (offset + Math.floor(Math.random() * COLORS_POOL.length)) %
+          COLORS_POOL.length
+      ],
     trail: [],
   };
 }
@@ -72,9 +81,16 @@ export function GravitySandbox() {
 
     const additions = Array.from({ length: BODIES_PER_BURST }, (_, index) => {
       const particle = createOrbiter(wellRef.current, width, height, index);
-      const angle = Math.atan2(origin.y - wellRef.current.y, origin.x - wellRef.current.x);
-      const distance = Math.max(42, Math.hypot(origin.x - wellRef.current.x, origin.y - wellRef.current.y));
-      const speed = Math.sqrt(GRAVITY / distance) * (0.78 + Math.random() * 0.28);
+      const angle = Math.atan2(
+        origin.y - wellRef.current.y,
+        origin.x - wellRef.current.x,
+      );
+      const distance = Math.max(
+        42,
+        Math.hypot(origin.x - wellRef.current.x, origin.y - wellRef.current.y),
+      );
+      const speed =
+        Math.sqrt(GRAVITY / distance) * (0.78 + Math.random() * 0.28);
 
       particle.x = origin.x + (Math.random() - 0.5) * 18;
       particle.y = origin.y + (Math.random() - 0.5) * 18;
@@ -134,7 +150,12 @@ export function GravitySandbox() {
         const x = (index * 73.37) % width;
         const y = (index * 47.83) % height;
         context.fillStyle = `rgba(255,255,255,${0.11 + (index % 4) * 0.045})`;
-        context.fillRect(x, y, index % 5 === 0 ? 1.4 : 0.8, index % 5 === 0 ? 1.4 : 0.8);
+        context.fillRect(
+          x,
+          y,
+          index % 5 === 0 ? 1.4 : 0.8,
+          index % 5 === 0 ? 1.4 : 0.8,
+        );
       }
 
       if (!pausedRef.current) {
@@ -206,12 +227,24 @@ export function GravitySandbox() {
       coreGlow.addColorStop(0.48, "rgba(124, 58, 237, 0.34)");
       coreGlow.addColorStop(1, "rgba(124, 58, 237, 0)");
       context.beginPath();
-      context.arc(wellRef.current.x, wellRef.current.y, CORE_RADIUS * 2.5, 0, Math.PI * 2);
+      context.arc(
+        wellRef.current.x,
+        wellRef.current.y,
+        CORE_RADIUS * 2.5,
+        0,
+        Math.PI * 2,
+      );
       context.fillStyle = coreGlow;
       context.fill();
 
       context.beginPath();
-      context.arc(wellRef.current.x, wellRef.current.y, CORE_RADIUS, 0, Math.PI * 2);
+      context.arc(
+        wellRef.current.x,
+        wellRef.current.y,
+        CORE_RADIUS,
+        0,
+        Math.PI * 2,
+      );
       context.strokeStyle = "rgba(165, 243, 252, 0.58)";
       context.lineWidth = 1;
       context.stroke();
@@ -238,7 +271,10 @@ export function GravitySandbox() {
 
   const handlePointerDown = (event: PointerEvent<HTMLCanvasElement>) => {
     const point = getPointerPosition(event);
-    const distanceFromCore = Math.hypot(point.x - wellRef.current.x, point.y - wellRef.current.y);
+    const distanceFromCore = Math.hypot(
+      point.x - wellRef.current.x,
+      point.y - wellRef.current.y,
+    );
 
     event.currentTarget.focus();
     if (distanceFromCore <= CORE_RADIUS * 2.25) {
@@ -306,7 +342,7 @@ export function GravitySandbox() {
             Interactive experiment
           </p>
           <p className="mt-0.5 text-xs font-semibold tracking-wider uppercase">
-            Gravity sandbox
+            Playdium
           </p>
         </div>
 
@@ -314,35 +350,41 @@ export function GravitySandbox() {
           aria-live="polite"
           className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[9px] text-white/60"
         >
-          {particleCount} bodies
+          {particleCount} stars
         </span>
       </div>
 
       <div className="flex items-center gap-1.5 border-y border-white/10 px-3 py-2">
-          <button
-            type="button"
-            onClick={() => spawnBurst()}
-            className="flex h-8 flex-1 items-center justify-center gap-2 rounded-lg border border-cyan-300/20 bg-cyan-300/7 px-3 text-[9px] tracking-[0.08em] text-cyan-100/75 uppercase transition hover:border-cyan-300/45 hover:bg-cyan-300/12 hover:text-cyan-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-          >
-            <CirclePlus aria-hidden="true" size={13} />
-            Add {BODIES_PER_BURST} bodies
-          </button>
-          <button
-            type="button"
-            onClick={togglePaused}
-            aria-label={isPaused ? "Resume gravity simulation" : "Pause gravity simulation"}
-            className="grid size-7 place-items-center rounded-full border border-white/10 text-white/55 transition hover:border-cyan-300/40 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-          >
-            {isPaused ? <Play aria-hidden="true" size={12} /> : <Pause aria-hidden="true" size={12} />}
-          </button>
-          <button
-            type="button"
-            onClick={reset}
-            aria-label="Reset gravity simulation"
-            className="grid size-7 place-items-center rounded-full border border-white/10 text-white/55 transition hover:border-cyan-300/40 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-          >
-            <RotateCcw aria-hidden="true" size={12} />
-          </button>
+        <button
+          type="button"
+          onClick={() => spawnBurst()}
+          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-lg border border-cyan-300/20 bg-cyan-300/7 px-3 text-[9px] tracking-[0.08em] text-cyan-100/75 uppercase transition hover:border-cyan-300/45 hover:bg-cyan-300/12 hover:text-cyan-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+        >
+          <CirclePlus aria-hidden="true" size={13} />
+          Add {BODIES_PER_BURST} bodies
+        </button>
+        <button
+          type="button"
+          onClick={togglePaused}
+          aria-label={
+            isPaused ? "Resume gravity simulation" : "Pause gravity simulation"
+          }
+          className="grid size-7 place-items-center rounded-full border border-white/10 text-white/55 transition hover:border-cyan-300/40 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+        >
+          {isPaused ? (
+            <Play aria-hidden="true" size={12} />
+          ) : (
+            <Pause aria-hidden="true" size={12} />
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={reset}
+          aria-label="Reset gravity simulation"
+          className="grid size-7 place-items-center rounded-full border border-white/10 text-white/55 transition hover:border-cyan-300/40 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+        >
+          <RotateCcw aria-hidden="true" size={12} />
+        </button>
       </div>
 
       <div className="relative">
@@ -362,7 +404,7 @@ export function GravitySandbox() {
           className="block h-[250px] w-full touch-none cursor-crosshair outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-cyan-300/55 2xl:h-[285px]"
         />
         <p className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-[8px] tracking-[0.11em] text-white/38 uppercase">
-          Click to add bodies · drag the core to bend gravity
+          Click to add stars · drag the core to bend gravity
         </p>
       </div>
     </div>

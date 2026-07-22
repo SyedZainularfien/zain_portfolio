@@ -47,14 +47,26 @@ const TECHNOLOGY_ICONS: Record<
   "React Native": { Icon: SiReact, accent: "#61dafb", glow: "97, 218, 251" },
   Expo: { Icon: SiExpo, accent: "#ffffff", glow: "255, 255, 255" },
   "Redux Toolkit": { Icon: SiRedux, accent: "#764abc", glow: "118, 74, 188" },
-  "TanStack Query": { Icon: SiReactquery, accent: "#ff4154", glow: "255, 65, 84" },
-  "Tailwind CSS": { Icon: SiTailwindcss, accent: "#06b6d4", glow: "6, 182, 212" },
+  "TanStack Query": {
+    Icon: SiReactquery,
+    accent: "#ff4154",
+    glow: "255, 65, 84",
+  },
+  "Tailwind CSS": {
+    Icon: SiTailwindcss,
+    accent: "#06b6d4",
+    glow: "6, 182, 212",
+  },
   "Mantine UI": { Icon: SiMantine, accent: "#339af0", glow: "51, 154, 240" },
   "Shadcn UI": { Icon: SiShadcnui, accent: "#ffffff", glow: "255, 255, 255" },
   "Framer Motion": { Icon: SiFramer, accent: "#bb4bff", glow: "187, 75, 255" },
   GSAP: { Icon: SiGreensock, accent: "#88ce02", glow: "136, 206, 2" },
   Zod: { Icon: SiZod, accent: "#3e67b1", glow: "62, 103, 177" },
-  "JWT Auth": { Icon: SiJsonwebtokens, accent: "#d95cff", glow: "217, 92, 255" },
+  "JWT Auth": {
+    Icon: SiJsonwebtokens,
+    accent: "#d95cff",
+    glow: "217, 92, 255",
+  },
   "AI Agents": { Icon: LuBot, accent: "#22d3ee", glow: "34, 211, 238" },
   Claude: { Icon: SiClaude, accent: "#d97757", glow: "217, 119, 87" },
   Cursor: { Icon: SiCursor, accent: "#ffffff", glow: "255, 255, 255" },
@@ -70,12 +82,14 @@ function TechnologyTile({ index, label }: TechnologyTileProps) {
 
   return (
     <div
-      style={{
-        "--tech-accent": technology.accent,
-        "--tech-glow": technology.glow,
-        "--tech-delay": `${(index % 7) * -0.45}s`,
-        fontFamily: FONT_FAMILY.display,
-      } as CSSProperties}
+      style={
+        {
+          "--tech-accent": technology.accent,
+          "--tech-glow": technology.glow,
+          "--tech-delay": `${(index % 7) * -0.45}s`,
+          fontFamily: FONT_FAMILY.display,
+        } as CSSProperties
+      }
       className="technology-tile"
     >
       <div className="technology-tile-glow" aria-hidden="true" />
@@ -119,7 +133,7 @@ export function MarqueeSection() {
             {[0, 1].map((copyIndex) => (
               <div
                 key={`technology-copy-${copyIndex}`}
-                className="technology-row"
+                className="technology-row space-y-7"
                 aria-hidden={copyIndex === 1}
               >
                 {row.map((technology, index) => (
