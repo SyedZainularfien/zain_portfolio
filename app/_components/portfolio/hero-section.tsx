@@ -2,6 +2,8 @@ import { FadeIn } from "@/app/_components/animations/fade-in";
 import { Magnet } from "@/app/_components/animations/magnet";
 import { AvatarVisual } from "@/app/_components/portfolio/avatar-visual";
 import { ContactButton } from "@/app/_components/ui/contact-button";
+import { GalaxyBackground } from "@/app/_components/portfolio/galaxy-background";
+import { InteractiveTerminal } from "@/app/_components/portfolio/interactive-terminal";
 import { NAVIGATION_ITEMS } from "@/app/_data/portfolio";
 import { COLORS, FONT_FAMILY, HEADING_GRADIENT } from "@/app/_lib/theme";
 
@@ -9,8 +11,10 @@ export function HeroSection() {
   return (
     <section
       style={{ overflowX: "clip", minHeight: "100svh" }}
-      className="flex flex-col px-4 pt-6 pb-8 sm:px-6 sm:pt-8 sm:pb-10"
+      className="relative isolate flex flex-col px-4 pt-6 pb-8 sm:px-6 sm:pt-8 sm:pb-10"
     >
+      <GalaxyBackground />
+
       <FadeIn y={-20}>
         <nav
           aria-label="Primary navigation"
@@ -30,7 +34,7 @@ export function HeroSection() {
         </nav>
       </FadeIn>
 
-      <div className="flex flex-1 flex-col items-center justify-center gap-6 py-8 sm:gap-10 sm:py-10">
+      <div className="relative flex flex-1 flex-col items-center justify-center gap-6 py-8 sm:gap-10 sm:py-10">
         <FadeIn delay={0.15} y={40}>
           <h1
             style={{
@@ -47,11 +51,19 @@ export function HeroSection() {
           </h1>
         </FadeIn>
 
-        <FadeIn delay={0.6} y={30}>
-          <Magnet padding={150} strength={4}>
-            <AvatarVisual />
-          </Magnet>
-        </FadeIn>
+        <div className="absolute top-[57%] left-0 z-20 hidden w-[350px] -translate-y-1/2 xl:block 2xl:w-[420px]">
+          <FadeIn delay={0.45} x={-30} y={0}>
+            <InteractiveTerminal />
+          </FadeIn>
+        </div>
+
+        <div className="xl:translate-x-[58px] 2xl:translate-x-[70px]">
+          <FadeIn delay={0.6} y={30}>
+            <Magnet padding={150} strength={4}>
+              <AvatarVisual />
+            </Magnet>
+          </FadeIn>
+        </div>
       </div>
 
       <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between">

@@ -1,4 +1,5 @@
 import { AboutSection } from "@/app/_components/portfolio/about-section";
+import { ContactSection } from "@/app/_components/portfolio/contact-section";
 import { HeroSection } from "@/app/_components/portfolio/hero-section";
 import { MarqueeSection } from "@/app/_components/portfolio/marquee-section";
 import { PortfolioFooter } from "@/app/_components/portfolio/portfolio-footer";
@@ -13,6 +14,7 @@ export default function HomePage() {
       <AboutSection />
       <ServicesSection />
       <ProjectsSection />
+      <ContactSection />
       <PortfolioFooter />
     </main>
   );

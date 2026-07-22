@@ -2,8 +2,8 @@ import { FONT_FAMILY } from "@/app/_lib/theme";
 
 export function ContactButton() {
   return (
-    <button
-      type="button"
+    <a
+      href="#contact"
       style={{
         borderRadius: 999,
         background:
@@ -16,9 +16,9 @@ export function ContactButton() {
         fontFamily: FONT_FAMILY.display,
         padding: "0.85rem 2.2rem",
       }}
-      className="text-sm font-medium uppercase tracking-widest"
+      className="inline-flex text-sm font-medium uppercase tracking-widest transition-transform duration-200 hover:-translate-y-0.5"
     >
       Contact Me
-    </button>
+    </a>
   );
 }

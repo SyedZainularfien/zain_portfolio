@@ -7,6 +7,7 @@ export interface Service {
 export interface Project {
   name: string;
   category: string;
-  technologies: string;
+  description: string;
+  technologies?: string;
   gradients: readonly [string, string, string];
 }

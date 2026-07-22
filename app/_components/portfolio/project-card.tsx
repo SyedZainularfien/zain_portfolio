@@ -24,7 +24,8 @@ export function ProjectCard({ index, project, total }: ProjectCardProps) {
         1,
         Math.max(0, (window.innerHeight - rect.top) / window.innerHeight),
       );
-      const targetScale = 1 - (total - 1 - index) * 0.03;
+      const cardsAbove = Math.min(total - 1 - index, 4);
+      const targetScale = 1 - cardsAbove * 0.015;
       setScale(1 - (1 - targetScale) * progress);
     }
 
@@ -39,7 +40,7 @@ export function ProjectCard({ index, project, total }: ProjectCardProps) {
     <article
       style={
         {
-          "--project-card-top": `${96 + index * 28}px`,
+          "--project-card-top": `${96 + Math.min(index, 6) * 12}px`,
         } as CSSProperties
       }
       className="relative mb-8 h-[620px] md:sticky md:top-[var(--project-card-top)] md:h-[85vh]"
@@ -88,10 +89,18 @@ export function ProjectCard({ index, project, total }: ProjectCardProps) {
             </h3>
             <span
               style={{ color: COLORS.muted, fontFamily: FONT_FAMILY.mono }}
-              className="mt-1 text-xs"
+              className="mt-1 max-w-xl text-xs"
             >
-              {project.technologies}
+              {project.description}
             </span>
+            {project.technologies ? (
+              <span
+                style={{ color: COLORS.muted, fontFamily: FONT_FAMILY.mono }}
+                className="mt-1 text-[10px] uppercase opacity-60"
+              >
+                {project.technologies}
+              </span>
+            ) : null}
           </div>
           <button
             type="button"
