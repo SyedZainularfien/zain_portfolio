@@ -43,7 +43,7 @@ export function ProjectCard({ index, project, total }: ProjectCardProps) {
           "--project-card-top": `${96 + Math.min(index, 6) * 12}px`,
         } as CSSProperties
       }
-      className="relative mb-8 h-[620px] md:sticky md:top-[var(--project-card-top)] md:h-[85vh]"
+      className="selected-project-card relative mb-8 h-[620px] md:sticky md:top-[var(--project-card-top)] md:h-[85vh]"
     >
       <div
         ref={cardRef}
@@ -56,9 +56,9 @@ export function ProjectCard({ index, project, total }: ProjectCardProps) {
           willChange: "transform",
           height: "100%",
         }}
-        className="flex flex-col p-5"
+        className="selected-project-card-inner flex flex-col p-5"
       >
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="selected-project-card-header mb-6 flex flex-wrap items-center justify-between gap-4">
           <span
             aria-hidden="true"
             style={{
@@ -70,7 +70,7 @@ export function ProjectCard({ index, project, total }: ProjectCardProps) {
           >
             {String(index + 1).padStart(2, "0")}
           </span>
-          <div className="flex flex-col items-center text-center">
+          <div className="selected-project-card-copy flex flex-col items-center text-center">
             <span
               style={{ color: COLORS.text, fontFamily: FONT_FAMILY.display }}
               className="text-xs tracking-widest uppercase opacity-60"
@@ -110,13 +110,16 @@ export function ProjectCard({ index, project, total }: ProjectCardProps) {
               color: COLORS.text,
               fontFamily: FONT_FAMILY.display,
             }}
-            className="px-6 py-2 text-xs tracking-widest uppercase hover:opacity-70"
+            className="selected-project-card-action px-6 py-2 text-xs tracking-widest uppercase hover:opacity-70"
           >
             View Project
           </button>
         </div>
 
-        <div className="flex flex-1 gap-3" style={{ minHeight: 0 }}>
+        <div
+          className="selected-project-card-visual flex flex-1 gap-3"
+          style={{ minHeight: 0 }}
+        >
           <div className="flex flex-col gap-3" style={{ width: "40%" }}>
             <div style={{ background: primaryGradient, borderRadius: 28, flex: 1 }} />
             <div style={{ background: secondaryGradient, borderRadius: 28, flex: 1.6 }} />

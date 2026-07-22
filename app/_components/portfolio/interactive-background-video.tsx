@@ -12,7 +12,7 @@ export function InteractiveBackgroundVideo() {
     const video = videoRef.current;
     if (!video) return;
 
-    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    const desktopQuery = window.matchMedia("(min-width: 1025px)");
     let removeModeListeners = () => {};
 
     const configurePlayback = () => {
@@ -81,21 +81,8 @@ export function InteractiveBackgroundVideo() {
         return;
       }
 
-      video.autoplay = true;
-
-      const playVideo = () => {
-        const playback = video.play();
-        playback?.catch(() => {
-          // Muted inline video is normally allowed; silently tolerate stricter browsers.
-        });
-      };
-
-      if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) playVideo();
-      else video.addEventListener("canplay", playVideo, { once: true });
-
-      removeModeListeners = () => {
-        video.removeEventListener("canplay", playVideo);
-      };
+      video.autoplay = false;
+      video.pause();
     };
 
     configurePlayback();
@@ -108,15 +95,15 @@ export function InteractiveBackgroundVideo() {
   }, []);
 
   return (
-    <div className="order-last lg:order-none relative lg:absolute lg:inset-0 lg:z-0 overflow-hidden pointer-events-none w-full aspect-square md:aspect-video lg:aspect-auto lg:h-full bg-neutral-50 lg:bg-transparent">
+    <div className="about-background-video pointer-events-none absolute inset-0 z-0 h-full w-full overflow-hidden">
       <video
         ref={videoRef}
         src={VIDEO_SOURCE}
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
-        className="w-full h-full object-cover object-right lg:object-right-bottom"
+        className="h-full w-full object-cover object-right-bottom"
       />
     </div>
   );

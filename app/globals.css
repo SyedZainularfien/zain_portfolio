@@ -42,6 +42,153 @@ a {
   scroll-margin-top: 5rem;
 }
 
+.hero-showcase {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  grid-template-areas:
+    "avatar"
+    "terminal"
+    "sandbox";
+  gap: 1.5rem;
+}
+
+.hero-terminal-panel,
+.hero-sandbox-panel {
+  width: min(100%, 34rem);
+  justify-self: center;
+}
+
+.hero-terminal-panel {
+  grid-area: terminal;
+}
+
+.hero-avatar-panel {
+  grid-area: avatar;
+}
+
+.hero-sandbox-panel {
+  grid-area: sandbox;
+}
+
+.about-background-video {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .about-background-video {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .selected-projects-list > .selected-project-card:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .selected-project-card-header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .selected-project-card-copy {
+    min-width: 0;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1279px) {
+  .hero-showcase {
+    grid-template-areas:
+      "avatar avatar"
+      "terminal sandbox";
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-showcase {
+    grid-template-areas: "terminal avatar sandbox";
+    grid-template-columns: 350px minmax(0, 1fr) 330px;
+  }
+
+  .hero-terminal-panel {
+    justify-self: start;
+  }
+
+  .hero-sandbox-panel {
+    justify-self: end;
+  }
+}
+
+@media (min-width: 1536px) {
+  .hero-showcase {
+    grid-template-columns: 420px minmax(0, 1fr) 370px;
+  }
+}
+
+@media (max-width: 719px) {
+  .hero-showcase {
+    gap: 1.25rem;
+  }
+
+  .hero-terminal-panel [aria-label="Terminal output"] {
+    height: 220px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-sandbox-panel button:first-child {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .selected-project-card {
+    height: 580px;
+  }
+
+  .selected-project-card-inner {
+    padding: 1rem;
+    border-radius: 30px !important;
+  }
+
+  .selected-project-card-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .selected-project-card-copy {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
+  .selected-project-card-action {
+    justify-self: end;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .selected-project-card-visual {
+    gap: 0.5rem;
+  }
+
+  .selected-project-card-visual > div:first-child {
+    gap: 0.5rem;
+  }
+
+  .selected-project-card-visual > div,
+  .selected-project-card-visual > div > div {
+    border-radius: 20px !important;
+  }
+}
+
 .portfolio-navbar {
   position: fixed;
   top: 0;
