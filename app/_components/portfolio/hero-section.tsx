@@ -33,14 +33,14 @@ export function HeroSection() {
           </h1>
         </FadeIn>
 
-        <div className="grid w-full items-center xl:grid-cols-[350px_minmax(0,1fr)_330px] 2xl:grid-cols-[420px_minmax(0,1fr)_370px]">
-          <div className="z-20 hidden w-full justify-self-start xl:block">
+        <div className="hero-showcase">
+          <div className="hero-terminal-panel z-20 w-full">
             <FadeIn delay={0.45} x={-30} y={0}>
               <InteractiveTerminal />
             </FadeIn>
           </div>
 
-          <div className="justify-self-center xl:col-start-2">
+          <div className="hero-avatar-panel justify-self-center">
             <FadeIn delay={0.6} y={30}>
               <Magnet padding={150} strength={4}>
                 <AvatarVisual />
@@ -48,7 +48,7 @@ export function HeroSection() {
             </FadeIn>
           </div>
 
-          <div className="z-20 hidden w-full justify-self-end xl:col-start-3 xl:block">
+          <div className="hero-sandbox-panel z-20 w-full">
             <FadeIn delay={0.52} x={30} y={0}>
               <GravitySandbox />
             </FadeIn>

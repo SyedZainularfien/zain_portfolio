@@ -64,7 +64,7 @@ export function AboutSection() {
       <InteractiveBackgroundVideo />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
+        className="pointer-events-none absolute inset-0 z-[1] hidden min-[1025px]:block"
         style={{
           background:
             "linear-gradient(90deg, rgba(10,11,13,0.88), rgba(10,11,13,0.62) 50%, rgba(10,11,13,0.76)), linear-gradient(0deg, rgba(10,11,13,0.72), transparent 35%, rgba(10,11,13,0.4))",

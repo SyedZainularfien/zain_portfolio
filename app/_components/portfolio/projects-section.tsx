@@ -56,7 +56,10 @@ export function ProjectsSection({
           headingElement
         )}
 
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+        <div
+          className="selected-projects-list"
+          style={{ maxWidth: 900, margin: "0 auto" }}
+        >
           {projects.map((project, index) => (
             <ProjectCard
               key={project.name}
