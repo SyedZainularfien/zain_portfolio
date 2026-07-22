@@ -4,6 +4,7 @@ import { AvatarVisual } from "@/app/_components/portfolio/avatar-visual";
 import { ContactButton } from "@/app/_components/ui/contact-button";
 import { GalaxyBackground } from "@/app/_components/portfolio/galaxy-background";
 import { InteractiveTerminal } from "@/app/_components/portfolio/interactive-terminal";
+import { GravitySandbox } from "@/app/_components/portfolio/gravity-sandbox";
 import { NAVIGATION_ITEMS } from "@/app/_data/portfolio";
 import { COLORS, FONT_FAMILY, HEADING_GRADIENT } from "@/app/_lib/theme";
 
@@ -51,18 +52,26 @@ export function HeroSection() {
           </h1>
         </FadeIn>
 
-        <div className="absolute top-[57%] left-0 z-20 hidden w-[350px] -translate-y-1/2 xl:block 2xl:w-[420px]">
-          <FadeIn delay={0.45} x={-30} y={0}>
-            <InteractiveTerminal />
-          </FadeIn>
-        </div>
+        <div className="grid w-full items-center xl:grid-cols-[350px_minmax(0,1fr)_330px] 2xl:grid-cols-[420px_minmax(0,1fr)_370px]">
+          <div className="z-20 hidden w-full justify-self-start xl:block">
+            <FadeIn delay={0.45} x={-30} y={0}>
+              <InteractiveTerminal />
+            </FadeIn>
+          </div>
 
-        <div className="xl:translate-x-[58px] 2xl:translate-x-[70px]">
-          <FadeIn delay={0.6} y={30}>
-            <Magnet padding={150} strength={4}>
-              <AvatarVisual />
-            </Magnet>
-          </FadeIn>
+          <div className="justify-self-center xl:col-start-2">
+            <FadeIn delay={0.6} y={30}>
+              <Magnet padding={150} strength={4}>
+                <AvatarVisual />
+              </Magnet>
+            </FadeIn>
+          </div>
+
+          <div className="z-20 hidden w-full justify-self-end xl:col-start-3 xl:block">
+            <FadeIn delay={0.52} x={30} y={0}>
+              <GravitySandbox />
+            </FadeIn>
+          </div>
         </div>
       </div>
 

@@ -3,7 +3,7 @@ import avatarImage from "@/public/zain-avatar.png";
 
 export function AvatarVisual() {
   return (
-    <div className="w-[250px] md:w-[440px] lg:w-[520px] xl:w-[600px]">
+    <div className="w-[250px] md:w-[440px] lg:w-[520px] xl:w-full xl:max-w-[600px]">
       <Image
         src={avatarImage}
         alt="Portrait avatar of Zain"

@@ -38,6 +38,289 @@ a {
   overflow-x: clip;
 }
 
+.technology-section {
+  position: relative;
+  padding: clamp(5rem, 9vw, 7.5rem) 0 2.5rem;
+  perspective: 1100px;
+}
+
+.technology-section::before {
+  position: absolute;
+  top: 8rem;
+  left: 50%;
+  width: min(76vw, 920px);
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.07), transparent 68%);
+  content: "";
+  filter: blur(34px);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.technology-heading {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 2.5rem));
+  margin: 0 auto clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.technology-heading span {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: #22d3ee;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.technology-heading h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6.5vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.technology-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.technology-marquee::before,
+.technology-marquee::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  width: clamp(1.5rem, 7vw, 7rem);
+  content: "";
+  pointer-events: none;
+}
+
+.technology-marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, #0a0b0d, transparent);
+}
+
+.technology-marquee::after {
+  right: 0;
+  background: linear-gradient(-90deg, #0a0b0d, transparent);
+}
+
+.technology-marquee-first {
+  margin-bottom: 0.85rem;
+}
+
+.technology-track {
+  display: flex;
+  width: max-content;
+  animation: technology-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.technology-marquee-reverse .technology-track {
+  animation-direction: reverse;
+  animation-duration: 38s;
+}
+
+.technology-marquee:hover .technology-track {
+  animation-play-state: paused;
+}
+
+.technology-row {
+  position: relative;
+  display: flex;
+  gap: 0.85rem;
+  width: max-content;
+  padding-right: 0.85rem;
+}
+
+.technology-tile {
+  --tech-accent: #22d3ee;
+  --tech-glow: 34, 211, 238;
+  position: relative;
+  display: flex;
+  width: 220px;
+  height: 190px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(215, 226, 234, 0.11);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(var(--tech-glow), 0.12), transparent 48%),
+    linear-gradient(160deg, rgba(25, 29, 35, 0.98), rgba(12, 14, 17, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 18px 42px rgba(0, 0, 0, 0.2);
+  color: #d7e2ea;
+  transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+  transform-style: preserve-3d;
+  transition:
+    transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.technology-tile::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.07), transparent 55%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-45%);
+  transition: opacity 260ms ease, transform 500ms ease;
+}
+
+.technology-tile:hover {
+  z-index: 2;
+  border-color: rgba(var(--tech-glow), 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 28px 64px rgba(0, 0, 0, 0.34),
+    0 0 40px rgba(var(--tech-glow), 0.11);
+  transform: translateY(-8px) rotateX(5deg) rotateY(-5deg) scale(1.025);
+}
+
+.technology-tile:hover::before {
+  opacity: 1;
+  transform: translateX(45%);
+}
+
+.technology-tile-glow {
+  position: absolute;
+  top: -3.5rem;
+  right: -3rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: rgba(var(--tech-glow), 0.2);
+  filter: blur(54px);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.technology-tile:hover .technology-tile-glow {
+  opacity: 0.92;
+}
+
+.technology-logo-stage {
+  position: absolute;
+  top: 0.85rem;
+  left: 50%;
+  width: 6.25rem;
+  height: 6.25rem;
+  transform: translateX(-50%) translateZ(26px);
+  transform-style: preserve-3d;
+}
+
+.technology-logo-stage::before,
+.technology-logo-stage::after {
+  position: absolute;
+  border: 1px solid rgba(var(--tech-glow), 0.2);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.technology-logo-stage::before {
+  inset: -0.1rem;
+  animation: technology-orbit 8s linear infinite;
+  animation-delay: var(--tech-delay);
+  border-right-color: var(--tech-accent);
+  border-bottom-color: transparent;
+}
+
+.technology-logo-stage::after {
+  inset: 0.45rem;
+  border-top-color: transparent;
+  opacity: 0.65;
+}
+
+.technology-logo-face,
+.technology-logo-shadow {
+  position: absolute;
+  inset: 0.85rem;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+}
+
+.technology-logo-shadow {
+  background: rgba(var(--tech-glow), 0.3);
+  filter: blur(13px);
+  transform: translate3d(7px, 10px, -12px) scale(0.85);
+}
+
+.technology-logo-face {
+  border: 1px solid rgba(var(--tech-glow), 0.35);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), transparent 44%),
+    rgba(9, 11, 14, 0.88);
+  box-shadow:
+    inset -6px -7px 15px rgba(0, 0, 0, 0.42),
+    inset 4px 4px 12px rgba(255, 255, 255, 0.05),
+    7px 9px 18px rgba(0, 0, 0, 0.28);
+  color: var(--tech-accent);
+  transform: rotateX(8deg) rotateY(-10deg);
+  transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.technology-logo-face svg {
+  width: 2.35rem;
+  height: 2.35rem;
+  filter: drop-shadow(0 4px 7px rgba(var(--tech-glow), 0.28));
+}
+
+.technology-tile:hover .technology-logo-face {
+  transform: translate3d(2px, -2px, 18px) rotateX(0deg) rotateY(0deg) scale(1.08);
+}
+
+.technology-name {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.9rem;
+  left: 1rem;
+  z-index: 1;
+  display: flex;
+  min-height: 2.4rem;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(var(--tech-glow), 0.18);
+  color: #e9f1f4;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateZ(18px);
+}
+
+@keyframes technology-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes technology-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .terminal-cursor {
   animation: blink 1s step-start infinite;
 }
@@ -432,6 +715,46 @@ a {
 }
 
 @media (max-width: 580px) {
+  .technology-section {
+    padding-top: 4.25rem;
+  }
+
+  .technology-heading {
+    width: calc(100% - 2rem);
+    margin-bottom: 2rem;
+  }
+
+  .technology-heading h2 {
+    font-size: clamp(2.35rem, 12vw, 3.4rem);
+  }
+
+  .technology-tile {
+    width: 184px;
+    height: 168px;
+    border-radius: 18px;
+  }
+
+  .technology-logo-stage {
+    top: 0.55rem;
+    left: 50%;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .technology-logo-face svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .technology-name {
+    right: 0.8rem;
+    bottom: 0.75rem;
+    left: 0.8rem;
+    min-height: 2.2rem;
+    padding-top: 0.65rem;
+    font-size: 0.78rem;
+  }
+
   .contact-section {
     border-top-left-radius: 34px;
     border-top-right-radius: 34px;
@@ -462,6 +785,19 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .technology-track {
+    animation: none;
+  }
+
+  .technology-logo-stage::before {
+    animation: none;
+  }
+
+  .technology-tile,
+  .technology-logo-face {
+    transition: none;
+  }
+
   .contact-status-dot {
     animation: none;
   }
