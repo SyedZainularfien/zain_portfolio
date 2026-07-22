@@ -5,35 +5,16 @@ import { ContactButton } from "@/app/_components/ui/contact-button";
 import { GalaxyBackground } from "@/app/_components/portfolio/galaxy-background";
 import { InteractiveTerminal } from "@/app/_components/portfolio/interactive-terminal";
 import { GravitySandbox } from "@/app/_components/portfolio/gravity-sandbox";
-import { NAVIGATION_ITEMS } from "@/app/_data/portfolio";
 import { COLORS, FONT_FAMILY, HEADING_GRADIENT } from "@/app/_lib/theme";
 
 export function HeroSection() {
   return (
     <section
+      id="top"
       style={{ overflowX: "clip", minHeight: "100svh" }}
-      className="relative isolate flex flex-col px-4 pt-6 pb-8 sm:px-6 sm:pt-8 sm:pb-10"
+      className="relative isolate flex flex-col px-4 pt-28 pb-8 sm:px-6 sm:pt-32 sm:pb-10"
     >
       <GalaxyBackground />
-
-      <FadeIn y={-20}>
-        <nav
-          aria-label="Primary navigation"
-          className="flex justify-between"
-          style={{ color: COLORS.text, fontFamily: FONT_FAMILY.display }}
-        >
-          {NAVIGATION_ITEMS.map((label) => (
-            <a
-              key={label}
-              href={`#${label.toLowerCase()}`}
-              style={{ transition: "opacity 200ms" }}
-              className="text-sm font-medium uppercase tracking-wider hover:opacity-70"
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-      </FadeIn>
 
       <div className="relative flex flex-1 flex-col items-center justify-center gap-6 py-8 sm:gap-10 sm:py-10">
         <FadeIn delay={0.15} y={40}>
